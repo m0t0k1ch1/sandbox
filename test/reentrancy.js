@@ -12,7 +12,6 @@ contract('Reentrancy', async (accounts) => {
     let balanceOfAlice;
     let balanceOfBob;
     let reserveAmount;
-    let withdrawnAmount;
 
     // Alice: deposit 1 ETH
     await vulnerable.deposit({from: alice, value: 1000000000000000000});
