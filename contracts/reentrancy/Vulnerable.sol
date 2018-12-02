@@ -11,8 +11,14 @@ contract Vulnerable {
     balances[msg.sender] = msg.value;
   }
 
+  function transfer(address _to, uint256 _amount) public {
+    require(balances[msg.sender] >= _amount);
+    balances[_to]        += _amount;
+    balances[msg.sender] -= _amount;
+  }
+
   function withdraw() public {
-    uint amount = balances[msg.sender];
+    uint256 amount = balances[msg.sender];
 
     bool ok;
     bytes memory data;
