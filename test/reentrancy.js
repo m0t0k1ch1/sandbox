@@ -1,10 +1,10 @@
-const Vulnerable = artifacts.require('./reentrancy/Vulnerable.sol');
-const Attacker   = artifacts.require('./reentrancy/Attacker.sol');
+const ReentrancyVulnerable = artifacts.require('./ReentrancyVulnerable.sol');
+const ReentrancyAttacker   = artifacts.require('./ReentrancyAttacker.sol');
 
 contract('Reentrancy', async (accounts) => {
   it('success: attack', async () => {
-    let vulnerable = await Vulnerable.deployed();
-    let attacker = await Attacker.deployed();
+    let vulnerable = await ReentrancyVulnerable.deployed();
+    let attacker   = await ReentrancyAttacker.deployed();
 
     let alice = accounts[0];
     let bob   = accounts[1];

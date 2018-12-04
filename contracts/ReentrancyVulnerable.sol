@@ -1,6 +1,6 @@
 pragma solidity >0.4.99 <0.6.0;
 
-contract Vulnerable {
+contract ReentrancyVulnerable {
   mapping (address => uint256) private balances;
 
   function balanceOf(address _addr) public view returns(uint256) {

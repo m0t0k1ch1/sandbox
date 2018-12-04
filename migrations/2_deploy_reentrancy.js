@@ -1,8 +1,8 @@
-const Vulnerable = artifacts.require('./reentrancy/Vulnerable.sol');
-const Attacker   = artifacts.require('./reentrancy/Attacker.sol');
+const ReentrancyVulnerable = artifacts.require('./ReentrancyVulnerable.sol');
+const ReentrancyAttacker   = artifacts.require('./ReentrancyAttacker.sol');
 
 module.exports = async (deployer) => {
-  await deployer.deploy(Vulnerable);
-  let vulnerable = await Vulnerable.deployed();
-  await deployer.deploy(Attacker, vulnerable.address);
+  await deployer.deploy(ReentrancyVulnerable);
+  let vulnerable = await ReentrancyVulnerable.deployed();
+  await deployer.deploy(ReentrancyAttacker, vulnerable.address);
 };

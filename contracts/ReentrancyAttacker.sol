@@ -1,14 +1,14 @@
 pragma solidity >0.4.99 <0.6.0;
 
-import "./Vulnerable.sol";
+import "./ReentrancyVulnerable.sol";
 
-contract Attacker {
+contract ReentrancyAttacker {
   address payable private owner;
-  Vulnerable private vulnerable;
+  ReentrancyVulnerable private vulnerable;
 
   constructor(address _vulnerableAddr) public {
     owner = msg.sender;
-    vulnerable = Vulnerable(_vulnerableAddr);
+    vulnerable = ReentrancyVulnerable(_vulnerableAddr);
   }
 
   function setOwner(address payable _owner) public {
