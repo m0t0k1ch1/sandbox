@@ -10,12 +10,12 @@ contract('Storage Manipulation', async (accounts) => {
     let codeValueMax;
 
     codeValueMax = await manipulatable.codeValueMax();
-    assert.equal('9999', codeValueMax.toString());
+    assert.equal(9999, codeValueMax);
 
     await manipulatable.popCode();
     await manipulatable.updateCode(web3.utils.toHex(codeValueMaxIndex), 0);
 
     codeValueMax = await manipulatable.codeValueMax();
-    assert.equal('0', codeValueMax.toString());
+    assert.equal(0, codeValueMax);
   });
 });

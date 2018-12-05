@@ -11,18 +11,18 @@ contract('Overflow', async (accounts) => {
     await overflowable.purchase({from: purchaser, value: 100});
 
     balance = await overflowable.balanceOf(purchaser);
-    assert.equal('100', balance.toString());
+    assert.equal(100, balance);
 
     // purchase 100 token
     await overflowable.purchase({from: purchaser, value: 100});
 
     balance = await overflowable.balanceOf(purchaser);
-    assert.equal('200', balance.toString());
+    assert.equal(200, balance);
 
     // purchase 100 token
     await overflowable.purchase({from: purchaser, value: 100});
 
     balance = await overflowable.balanceOf(purchaser);
-    assert.equal('44', balance.toString());
+    assert.equal(44, balance);
   });
 });
