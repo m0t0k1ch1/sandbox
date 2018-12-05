@@ -1,7 +1,7 @@
 pragma solidity >0.4.99 <0.6.0;
 
 contract ReentrancyVulnerable {
-  mapping (address => uint256) private balances;
+  mapping(address => uint256) private balances;
 
   function balanceOf(address _addr) public view returns(uint256) {
     return balances[_addr];
@@ -13,8 +13,9 @@ contract ReentrancyVulnerable {
 
   function transfer(address _to, uint256 _amount) public {
     require(balances[msg.sender] >= _amount);
-    balances[_to]        += _amount;
+    require(balances[_to] + _amount >= balances[_to]);
     balances[msg.sender] -= _amount;
+    balances[_to] += _amount;
   }
 
   function withdraw() public {
