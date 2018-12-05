@@ -18,14 +18,12 @@ contract ReentrancyVulnerable {
     balances[_to] += _amount;
   }
 
+  // vulnerable
   function withdraw() public {
-    uint256 amount = balances[msg.sender];
-
     bool ok;
     bytes memory data;
-    (ok, data) = msg.sender.call.value(amount)(abi.encodePacked());
+    (ok, data) = msg.sender.call.value(balances[msg.sender])(abi.encodePacked());
     require(ok);
-
     balances[msg.sender] = 0;
   }
 }
