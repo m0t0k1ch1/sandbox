@@ -1,7 +1,7 @@
 const StorageManipulatable = artifacts.require('./StorageManipulatable.sol');
 
 contract('Storage Manipulation', async (accounts) => {
-  it('success: attack', async () => {
+  it('success', async () => {
     let manipulatable = await StorageManipulatable.deployed();
 
     let codesStartIndex   = web3.utils.toBN(web3.utils.sha3('0x0000000000000000000000000000000000000000000000000000000000000002'));
