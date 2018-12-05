@@ -15,6 +15,7 @@ contract StorageManipulatable {
     codes.push(_code);
   }
 
+  // vulnerable
   function popCode() public {
     require(codes.length >=0);
     codes.length--;
