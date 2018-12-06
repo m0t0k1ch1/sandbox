@@ -12,6 +12,11 @@ contract Overflowable {
     unitAmount = _unitAmount;
   }
 
+  modifier onlyOwner {
+    require(msg.sender == owner);
+    _;
+  }
+
   // vulnerable
   function purchase() payable public {
     require(msg.value == unitPrice);
@@ -22,8 +27,7 @@ contract Overflowable {
     return balances[_addr];
   }
 
-  function withdraw() public {
-    require(msg.sender == owner);
+  function withdraw() public onlyOwner {
     require(msg.sender.send(address(this).balance));
   }
 }

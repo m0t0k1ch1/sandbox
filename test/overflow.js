@@ -4,7 +4,7 @@ contract('Overflow', async (accounts) => {
   it('success', async () => {
     let overflowable = await Overflowable.deployed();
 
-    let purchaser = accounts[0];
+    let purchaser = accounts[1];
     let balance;
 
     // purchase 100 token
