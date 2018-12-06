@@ -21,10 +21,8 @@ contract ReentrancyVulnerable {
 
   // vulnerable
   function withdraw() public {
-    bool ok;
-    bytes memory data;
-    (ok, data) = msg.sender.call.value(balances[msg.sender])(abi.encodePacked());
-    require(ok);
+    (bool success,) = msg.sender.call.value(balances[msg.sender])(abi.encodePacked());
+    require(success);
     balances[msg.sender] = 0;
   }
 }
