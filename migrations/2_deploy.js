@@ -8,5 +8,5 @@ module.exports = async (deployer) => {
   await deployer.deploy(ReentrancyVulnerable);
   let vulnerable = await ReentrancyVulnerable.deployed();
   await deployer.deploy(ReentrancyAttacker, vulnerable.address);
-  await deployer.deploy(StorageManipulatable, 10, 9999);
+  await deployer.deploy(StorageManipulatable, 10, 1000, 9999);
 };
