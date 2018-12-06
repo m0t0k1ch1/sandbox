@@ -8,7 +8,8 @@ contract ReentrancyVulnerable {
   }
 
   function deposit() payable public {
-    balances[msg.sender] = msg.value;
+    require(balances[msg.sender] + msg.value >= balances[msg.sender]);
+    balances[msg.sender] += msg.value;
   }
 
   function transfer(address _to, uint256 _amount) public {
