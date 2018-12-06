@@ -19,7 +19,7 @@ contract('Overflow', async (accounts) => {
     balance = await overflowable.balanceOf(purchaser);
     assert.equal(200, balance);
 
-    // purchase 100 token
+    // purchase 100 token (trigger the overflow of balances[purchaser])
     await overflowable.purchase({from: purchaser, value: 100});
 
     balance = await overflowable.balanceOf(purchaser);
