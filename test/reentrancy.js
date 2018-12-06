@@ -25,7 +25,7 @@ contract('Reentrancy', async (accounts) => {
       // Alice: deposit 0.1 ETH
       await attacker.deposit({from: alice, value: web3.utils.toWei('0.1', 'ether')});
 
-      // Alice: withdraw and transfer 0.1 ETH
+      // Alice: withdraw 0.1 ETH (transfer 0.1 ETH before withdrawal)
       await attacker.withdraw({from: alice});
     }
 
