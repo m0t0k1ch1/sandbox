@@ -26,6 +26,6 @@ contract ReentrancyAttacker {
 
   function withdraw() public onlyOwner {
     vulnerable.withdraw();
-    require(owner.send(address(this).balance));
+    owner.transfer(address(this).balance);
   }
 }

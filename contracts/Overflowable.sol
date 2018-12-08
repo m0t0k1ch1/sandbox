@@ -28,6 +28,6 @@ contract Overflowable {
   }
 
   function withdraw() public onlyOwner {
-    require(msg.sender.send(address(this).balance));
+    msg.sender.transfer(address(this).balance);
   }
 }
