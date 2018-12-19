@@ -12,7 +12,7 @@ contract ReentrancyAttacker {
   }
 
   modifier onlyOwner {
-    msg.sender == owner;
+    require(msg.sender == owner);
     _;
   }
 
