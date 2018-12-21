@@ -18,6 +18,14 @@ contract Overflowable {
     _unitAmount = unitAmount;
   }
 
+  function unitPrice() public view returns (uint256) {
+    return _unitPrice;
+  }
+
+  function unitAmount() public view returns (uint8) {
+    return _unitAmount;
+  }
+
   function balanceOf(address who) public view returns (uint8) {
     return _balances[who];
   }
