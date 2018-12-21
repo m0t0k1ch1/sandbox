@@ -1,28 +1,28 @@
 pragma solidity >0.4.99 <0.6.0;
 
 contract ReentrancyVulnerable {
-  mapping(address => uint256) private balances;
+  mapping(address => uint256) private _balances;
 
-  function balanceOf(address _addr) public view returns(uint256) {
-    return balances[_addr];
+  function balanceOf(address who) public view returns(uint256) {
+    return _balances[who];
   }
 
   function deposit() payable public {
-    require(balances[msg.sender] + msg.value >= balances[msg.sender]);
-    balances[msg.sender] += msg.value;
+    require(_balances[msg.sender] + msg.value >= _balances[msg.sender]);
+    _balances[msg.sender] += msg.value;
   }
 
-  function transfer(address _to, uint256 _amount) public {
-    require(balances[msg.sender] >= _amount);
-    require(balances[_to] + _amount >= balances[_to]);
-    balances[msg.sender] -= _amount;
-    balances[_to] += _amount;
+  function transfer(address to, uint256 value) public {
+    require(_balances[msg.sender] >= value);
+    require(_balances[to] + value >= _balances[to]);
+    _balances[msg.sender] -= value;
+    _balances[to] += value;
   }
 
   // vulnerable
   function withdraw() public {
-    (bool success,) = msg.sender.call.value(balances[msg.sender])(abi.encodePacked());
+    (bool success,) = msg.sender.call.value(_balances[msg.sender])(abi.encodePacked());
     require(success);
-    balances[msg.sender] = 0;
+    _balances[msg.sender] = 0;
   }
 }
