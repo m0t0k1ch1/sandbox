@@ -6,14 +6,14 @@ contract ReentrancyAttacker {
   address payable private _owner;
   ReentrancyVulnerable private _vulnerable;
 
-  constructor(address vulnerable) public {
-    _owner = msg.sender;
-    _vulnerable = ReentrancyVulnerable(vulnerable);
-  }
-
   modifier onlyOwner {
     require(msg.sender == _owner);
     _;
+  }
+
+  constructor(address vulnerable) public {
+    _owner = msg.sender;
+    _vulnerable = ReentrancyVulnerable(vulnerable);
   }
 
   function () payable external {

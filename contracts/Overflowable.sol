@@ -7,15 +7,15 @@ contract Overflowable {
 
   mapping(address => uint8) private _balances;
 
+  modifier onlyOwner {
+    require(msg.sender == _owner);
+    _;
+  }
+
   constructor(uint256 unitPrice, uint8 unitAmount) public {
     _owner = msg.sender;
     _unitPrice = unitPrice;
     _unitAmount = unitAmount;
-  }
-
-  modifier onlyOwner {
-    require(msg.sender == _owner);
-    _;
   }
 
   function balanceOf(address who) public view returns (uint8) {

@@ -8,13 +8,6 @@ contract StorageManipulatable {
 
   uint256[] public _codes;
 
-  constructor(uint256 codesNumMax, uint256 codeValueMin, uint256 codeValueMax) public {
-    _owner = msg.sender;
-    _codesNumMax  = codesNumMax;
-    _codeValueMin = codeValueMin;
-    _codeValueMax = codeValueMax;
-  }
-
   modifier onlyOwner() {
     require(msg.sender == _owner);
     _;
@@ -23,6 +16,13 @@ contract StorageManipulatable {
   modifier validCode(uint256 code) {
     require(_codeValueMin <= code && code <= _codeValueMax);
     _;
+  }
+
+  constructor(uint256 codesNumMax, uint256 codeValueMin, uint256 codeValueMax) public {
+    _owner = msg.sender;
+    _codesNumMax  = codesNumMax;
+    _codeValueMin = codeValueMin;
+    _codeValueMax = codeValueMax;
   }
 
   function codesNumMax() public view returns (uint256) {
