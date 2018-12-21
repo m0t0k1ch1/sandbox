@@ -1,30 +1,31 @@
 pragma solidity >0.4.99 <0.6.0;
 
 contract Overflowable {
-  address public owner;
-  uint256 public unitPrice;
-  uint8 public unitAmount;
-  mapping(address => uint8) private balances;
+  address private _owner;
+  uint256 private _unitPrice;
+  uint8 private _unitAmount;
 
-  constructor(uint256 _unitPrice, uint8 _unitAmount) public {
-    owner = msg.sender;
-    unitPrice = _unitPrice;
-    unitAmount = _unitAmount;
+  mapping(address => uint8) private _balances;
+
+  constructor(uint256 unitPrice, uint8 unitAmount) public {
+    _owner = msg.sender;
+    _unitPrice = unitPrice;
+    _unitAmount = unitAmount;
   }
 
   modifier onlyOwner {
-    require(msg.sender == owner);
+    require(msg.sender == _owner);
     _;
+  }
+
+  function balanceOf(address who) public view returns (uint8) {
+    return _balances[who];
   }
 
   // vulnerable
   function purchase() payable public {
-    require(msg.value == unitPrice);
-    balances[msg.sender] += unitAmount;
-  }
-
-  function balanceOf(address _addr) public view returns(uint8) {
-    return balances[_addr];
+    require(msg.value == _unitPrice);
+    _balances[msg.sender] += _unitAmount;
   }
 
   function withdraw() public onlyOwner {
