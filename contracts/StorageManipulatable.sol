@@ -1,42 +1,59 @@
 pragma solidity >0.4.99 <0.6.0;
 
 contract StorageManipulatable {
-  address public owner;
-  uint256 public codesNumMax;
-  uint256 public codeValueMin;
-  uint256 public codeValueMax;
-  uint256[] public codes;
+  address private _owner;
+  uint256 private _codesNumMax;
+  uint256 private _codeValueMin;
+  uint256 private _codeValueMax;
 
-  constructor(uint256 _codesNumMax, uint256 _codeValueMin, uint256 _codeValueMax) public {
-    owner = msg.sender;
-    codesNumMax  = _codesNumMax;
-    codeValueMin = _codeValueMin;
-    codeValueMax = _codeValueMax;
+  uint256[] public _codes;
+
+  constructor(uint256 codesNumMax, uint256 codeValueMin, uint256 codeValueMax) public {
+    _owner = msg.sender;
+    _codesNumMax  = codesNumMax;
+    _codeValueMin = codeValueMin;
+    _codeValueMax = codeValueMax;
   }
 
   modifier onlyOwner() {
-    require(msg.sender == owner);
+    require(msg.sender == _owner);
     _;
   }
 
-  modifier validCode(uint256 _code) {
-    require(codeValueMin <= _code && _code <= codeValueMax);
+  modifier validCode(uint256 code) {
+    require(_codeValueMin <= code && code <= _codeValueMax);
     _;
   }
 
-  function pushCode(uint256 _code) public onlyOwner validCode(_code) {
-    require(codes.length < codesNumMax);
-    codes.push(_code);
+  function codesNumMax() public view returns (uint256) {
+    return _codesNumMax;
+  }
+
+  function codeValueMin() public view returns (uint256) {
+    return _codeValueMin;
+  }
+
+  function codeValueMax() public view returns (uint256) {
+    return _codeValueMax;
+  }
+
+  function codeAt(uint256 index) public view returns (uint256) {
+    return _codes[index];
+  }
+
+  function pushCode(uint256 code) public onlyOwner validCode(code) {
+    require(_codes.length < _codesNumMax);
+    _codes.push(code);
   }
 
   // vulnerable
   function popCode() public onlyOwner {
-    require(codes.length >=0);
-    codes.length--;
+    require(_codes.length >=0);
+    _codes.length--;
   }
 
-  function updateCode(uint256 _index, uint256 _code) public onlyOwner validCode(_code) {
-    require(_index < codes.length);
-    codes[_index] = _code;
+  function updateCode(uint256 index, uint256 code) public onlyOwner validCode(code) {
+    require(index < _codes.length);
+    _codes[index] = code;
   }
 }
