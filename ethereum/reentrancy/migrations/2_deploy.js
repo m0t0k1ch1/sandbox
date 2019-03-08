@@ -1,5 +1,5 @@
-const Attacker   = artifacts.require('./Attacker.sol');
-const Vulnerable = artifacts.require('./Vulnerable.sol');
+const Attacker   = artifacts.require('Attacker');
+const Vulnerable = artifacts.require('Vulnerable');
 
 module.exports = async (deployer) => {
   await deployer.deploy(Vulnerable);

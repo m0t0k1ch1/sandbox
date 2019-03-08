@@ -1,5 +1,5 @@
-const Attacker   = artifacts.require('./Attacker.sol');
-const Vulnerable = artifacts.require('./Vulnerable.sol');
+const Attacker   = artifacts.require('Attacker');
+const Vulnerable = artifacts.require('Vulnerable');
 
 contract('Reentrancy', async (accounts) => {
   it('success', async () => {

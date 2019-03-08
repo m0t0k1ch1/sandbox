@@ -1,4 +1,4 @@
-const Vulnerable = artifacts.require('./vulnerable.sol');
+const Vulnerable = artifacts.require('Vulnerable');
 
 contract('Storage Manipulation', async (accounts) => {
   it('success', async () => {
