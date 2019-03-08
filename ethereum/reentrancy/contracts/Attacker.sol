@@ -1,10 +1,10 @@
-pragma solidity >0.4.99 <0.6.0;
+pragma solidity >=0.4.21 <0.6.0;
 
-import "./ReentrancyVulnerable.sol";
+import "./Vulnerable.sol";
 
-contract ReentrancyAttacker {
+contract Attacker {
   address payable private _owner;
-  ReentrancyVulnerable private _vulnerable;
+  Vulnerable private _vulnerable;
 
   modifier onlyOwner {
     require(msg.sender == _owner);
@@ -13,7 +13,7 @@ contract ReentrancyAttacker {
 
   constructor(address vulnerable) public {
     _owner = msg.sender;
-    _vulnerable = ReentrancyVulnerable(vulnerable);
+    _vulnerable = Vulnerable(vulnerable);
   }
 
   function () payable external {

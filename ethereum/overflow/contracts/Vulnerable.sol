@@ -1,6 +1,6 @@
-pragma solidity >0.4.99 <0.6.0;
+pragma solidity >=0.4.21 <0.6.0;
 
-contract Overflowable {
+contract Vulnerable {
   address private _owner;
   uint256 private _unitPrice;
   uint8 private _unitAmount;
