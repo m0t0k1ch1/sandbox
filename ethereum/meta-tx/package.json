@@ -1,0 +1,9 @@
+{
+  "name": "meta-tx",
+  "version": "0.1.0",
+  "description": "meta tx",
+  "author": "m0t0k1ch1",
+  "dependencies": {
+    "openzeppelin-solidity": "=2.1.1"
+  }
+}
