@@ -18,33 +18,33 @@ contract MetaToken is ERC20, ERC20Detailed {
   }
 
   function metaTransfer(
-      address from,
+      address frm,
       address to,
-      uint256 value,
+      uint256 amount,
       uint256 fee,
       uint256 nonce,
       address relayer,
       bytes memory sig
   ) public returns (bool) {
     require(msg.sender == relayer, "wrong relayer");
-    require(nonceOf(from) == nonce, "invalid nonce");
-    require(balanceOf(from) >= value.add(fee), "insufficient balance");
+    require(nonceOf(frm) == nonce, "invalid nonce");
+    require(balanceOf(frm) >= amount.add(fee), "insufficient balance");
 
-    bytes32 hash = metaTransferHash(from, to, value, fee, nonce, relayer);
+    bytes32 hash = metaTransferHash(frm, to, amount, fee, nonce, relayer);
     address signer = hash.toEthSignedMessageHash().recover(sig);
-    require(signer == from, "signer != from");
+    require(signer == frm, "signer != frm");
 
-    _transfer(from, to, value);
-    _transfer(from, relayer, fee);
-    _nonces[from]++;
+    _transfer(frm, to, amount);
+    _transfer(frm, relayer, fee);
+    _nonces[frm]++;
 
     return true;
   }
 
   function metaTransferHash(
-      address from,
+      address frm,
       address to,
-      uint256 value,
+      uint256 amount,
       uint256 fee,
       uint256 nonce,
       address relayer
@@ -53,9 +53,9 @@ contract MetaToken is ERC20, ERC20Detailed {
         abi.encodePacked(
             address(this),
             "metaTransfer",
-            from,
+            frm,
             to,
-            value,
+            amount,
             fee,
             nonce,
             relayer
