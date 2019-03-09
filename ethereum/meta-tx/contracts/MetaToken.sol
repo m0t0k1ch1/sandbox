@@ -21,24 +21,21 @@ contract MetaToken is ERC20, ERC20Detailed {
       address from,
       address to,
       uint256 value,
-      uint256[4] memory params, // nonce, gasPrice, gasLimit, tokenGasPrice
+      uint256 fee,
+      uint256 nonce,
       address relayer,
       bytes memory sig
   ) public returns (bool) {
-    uint256 initialGas = gasleft();
+    require(msg.sender == relayer, "wrong relayer");
+    require(nonceOf(from) == nonce, "invalid nonce");
+    require(balanceOf(from) >= value.add(fee), "insufficient balance");
 
-    require(relayer == msg.sender, "wrong relayer");
-    require(nonceOf(from) == params[0], "invalid nonce");
-    require(tx.gasprice == params[1], "gasPrice != requested gasPrice");
-    require(initialGas >= params[2], "insufficient gas");
-    require(balanceOf(from) >= value.add(params[2].mul(params[3])), "insufficient balance");
-
-    bytes32 hash = metaTransferHash(from, to, value, params, relayer);
+    bytes32 hash = metaTransferHash(from, to, value, fee, nonce, relayer);
     address signer = hash.toEthSignedMessageHash().recover(sig);
     require(signer == from, "signer != from");
 
     _transfer(from, to, value);
-    _transfer(from, relayer, initialGas - gasleft());
+    _transfer(from, relayer, fee);
     _nonces[from]++;
 
     return true;
@@ -48,7 +45,8 @@ contract MetaToken is ERC20, ERC20Detailed {
       address from,
       address to,
       uint256 value,
-      uint256[4] memory params,
+      uint256 fee,
+      uint256 nonce,
       address relayer
   ) public view returns (bytes32) {
     return keccak256(
@@ -58,10 +56,8 @@ contract MetaToken is ERC20, ERC20Detailed {
             from,
             to,
             value,
-            params[0],
-            params[1],
-            params[2],
-            params[3],
+            fee,
+            nonce,
             relayer
         )
     );
