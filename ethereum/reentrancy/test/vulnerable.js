@@ -1,7 +1,7 @@
 const Attacker   = artifacts.require('Attacker');
 const Vulnerable = artifacts.require('Vulnerable');
 
-contract('Reentrancy', async (accounts) => {
+contract('Vulnerable', async (accounts) => {
   it('success', async () => {
     let vulnerable = await Vulnerable.deployed();
     let attacker   = await Attacker.deployed();

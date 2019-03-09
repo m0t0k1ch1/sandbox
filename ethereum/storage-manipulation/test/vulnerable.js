@@ -1,6 +1,6 @@
 const Vulnerable = artifacts.require('Vulnerable');
 
-contract('Storage Manipulation', async (accounts) => {
+contract('Vulnerable', async (accounts) => {
   it('success', async () => {
     let vulnerable = await Vulnerable.deployed();
 
