@@ -7,7 +7,7 @@ contract Factory {
     address addr;
     assembly {
       addr := create2(0, add(code, 0x20), mload(code), salt)
-      // revert if code has been deployed
+      // revert if the code has been deployed
       if iszero(extcodesize(addr)) {
         revert(0, 0)
       }

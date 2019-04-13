@@ -33,8 +33,7 @@ contract('Factory', async (accounts) => {
     let data = burnerInstance.methods.burn().encodeABI();
 
     await account.executeCall(burner.address, web3.utils.toWei('1', 'ether'), data, {from: owner});
-    let balanceOfBurner = await web3.eth.getBalance(burner.address);
-    assert.equal(web3.utils.toWei('1', 'ether'), balanceOfBurner);
+    assert.equal(web3.utils.toWei('1', 'ether'), await web3.eth.getBalance(burner.address));
   });
 });
 
