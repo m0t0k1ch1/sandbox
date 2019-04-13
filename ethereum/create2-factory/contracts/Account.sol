@@ -5,8 +5,8 @@ contract Account {
 
   address public owner;
 
-  constructor() public {
-    owner = msg.sender;
+  constructor(address _owner) public {
+    owner = _owner;
   }
 
   function () external payable {}
