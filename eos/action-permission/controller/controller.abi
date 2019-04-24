@@ -30,7 +30,7 @@
             "base": "",
             "fields": [
                 {
-                    "name": "to",
+                    "name": "acnt",
                     "type": "name"
                 },
                 {
@@ -42,11 +42,11 @@
                     "type": "bytes"
                 },
                 {
-                    "name": "before",
+                    "name": "auth_before",
                     "type": "authority"
                 },
                 {
-                    "name": "after",
+                    "name": "auth_after",
                     "type": "authority"
                 }
             ]

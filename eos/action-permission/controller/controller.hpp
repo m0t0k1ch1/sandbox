@@ -25,7 +25,7 @@ struct wait_weight
 
 struct authority
 {
-  uint32_t                             threshold = 0;
+  uint32_t                             threshold;
   std::vector<key_weight>              keys;
   std::vector<permission_level_weight> accounts;
   std::vector<wait_weight>             waits;
@@ -38,10 +38,11 @@ class [[eosio::contract]] controller : public contract
   public:
 
     [[eosio::action]]
-    void execute(name to, name act, std::vector<char> data, authority before, authority after);
+    void execute(name acnt, name act, std::vector<char> data, authority auth_before, authority auth_after);
 
   private:
 
-    void update_active_auth(authority auth);
+    void execute_action(name acnt, name act, std::vector<char> data);
+    void update_auth(authority auth);
 
 };

@@ -2,22 +2,25 @@
 
 using namespace eosio;
 
-void controller::execute(name to, name act, std::vector<char> data, authority before, authority after) {
+void controller::execute(name acnt, name act, std::vector<char> data, authority auth_before, authority auth_after)
+{
   require_auth(_self);
+  update_auth(auth_before);
+  execute_action(acnt, act, data);
+  update_auth(auth_after);
+}
 
-  update_active_auth(before);
-
+void controller::execute_action(name acnt, name act, std::vector<char> data)
+{
   action a = action();
   a.authorization.push_back(permission_level{_self, name("active")});
-  a.account = to;
+  a.account = acnt;
   a.name    = act;
   a.data    = data;
   a.send();
-
-  update_active_auth(after);
 }
 
-void controller::update_active_auth(authority auth)
+void controller::update_auth(authority auth)
 {
   action(
     permission_level{_self, name("active")},
