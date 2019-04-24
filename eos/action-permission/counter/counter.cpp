@@ -4,7 +4,7 @@ using namespace eosio;
 
 void counter::increment(name me)
 {
-  require_auth(permission_level{me, REQUIRED_PERMISSION});
+  require_auth(me);
 
   auto count_pk_itr = counts.find(me.value);
   if (count_pk_itr == counts.end()) {

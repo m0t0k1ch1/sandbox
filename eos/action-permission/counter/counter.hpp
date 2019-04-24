@@ -25,8 +25,6 @@ class [[eosio::contract]] counter : public contract
     };
     typedef multi_index<name("counts"), count> count_index;
 
-    const name REQUIRED_PERMISSION = name("dapp.counter");
-
     count_index counts;
 
 };
