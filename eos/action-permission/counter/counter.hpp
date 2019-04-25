@@ -18,7 +18,8 @@ class [[eosio::contract]] counter : public contract
 
   private:
 
-    struct [[eosio::table]] count {
+    struct [[eosio::table]] count
+    {
       name     key;
       uint64_t val;
       uint64_t primary_key() const { return key.value; };
