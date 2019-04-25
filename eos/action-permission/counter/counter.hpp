@@ -10,8 +10,10 @@ class [[eosio::contract]] counter : public contract
 
   public:
 
-    counter(name receiver, name code, datastream<const char*> ds) : contract(receiver, code, ds),
-      counts(_self, _self.value) {};
+    counter(name receiver, name code, datastream<const char*> ds) :
+      contract(receiver, code, ds),
+      counts(_self, _self.value)
+    {};
 
     [[eosio::action]]
     void increment(name me);
