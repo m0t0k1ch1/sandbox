@@ -7,9 +7,9 @@ using namespace eosio;
 
 class [[eosio::contract]] controller : public contract
 {
-  using contract::contract;
-
   public:
+
+    controller(name receiver, name code, datastream<const char*> ds) : contract(receiver, code, ds) {};
 
     [[eosio::action]]
     void execute(name acnt, name act, std::vector<char> data, authority auth_before, authority auth_after);
@@ -18,5 +18,4 @@ class [[eosio::contract]] controller : public contract
 
     void execute_action(name acnt, name act, std::vector<char> data);
     void update_auth(authority auth);
-
 };

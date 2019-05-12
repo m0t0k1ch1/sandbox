@@ -6,8 +6,6 @@ using namespace eosio;
 
 class [[eosio::contract]] counter : public contract
 {
-  using contract::contract;
-
   public:
 
     counter(name receiver, name code, datastream<const char*> ds) :
@@ -29,5 +27,4 @@ class [[eosio::contract]] counter : public contract
     typedef multi_index<name("counts"), count> count_index;
 
     count_index counts;
-
 };

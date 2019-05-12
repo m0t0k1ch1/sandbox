@@ -2,8 +2,9 @@
 
 using namespace eosio;
 
-void proxy::increment(name me)
-{
+void proxy::increment(
+  name me
+) {
   require_auth(me);
 
   action(
