@@ -4,11 +4,11 @@
 
 using namespace eosio;
 
-class [[eosio::contract]] uint64 : public contract
+class [[eosio::contract]] test : public contract
 {
   public:
 
-    uint64(name receiver, name code, datastream<const char*> ds) :
+    test(name receiver, name code, datastream<const char*> ds) :
       contract(receiver, code, ds),
       numbers(_self, _self.value)
     {};

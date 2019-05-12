@@ -1,8 +1,8 @@
-#include "uint64.hpp"
+#include "test.hpp"
 
 using namespace eosio;
 
-void uint64::setnumber(
+void test::setnumber(
   name     me,
   uint64_t value
 ) {
