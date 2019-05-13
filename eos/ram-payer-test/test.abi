@@ -44,16 +44,6 @@
             ]
         },
         {
-            "name": "removeuser",
-            "base": "",
-            "fields": [
-                {
-                    "name": "me",
-                    "type": "name"
-                }
-            ]
-        },
-        {
             "name": "user",
             "base": "",
             "fields": [
@@ -81,11 +71,6 @@
         {
             "name": "moduser",
             "type": "moduser",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "removeuser",
-            "type": "removeuser",
             "ricardian_contract": ""
         }
     ],

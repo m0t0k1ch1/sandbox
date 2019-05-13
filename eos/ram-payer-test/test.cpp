@@ -34,13 +34,3 @@ void test::moduser(
     row.memo  = memo;
   });
 }
-
-void test::removeuser(
-  name me
-) {
-  require_auth(me);
-
-  const auto& user = users.get(me.value, "user is not found");
-
-  users.erase(user);
-}

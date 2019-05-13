@@ -19,9 +19,6 @@ class [[eosio::contract]] test : public contract
     [[eosio::action]]
     void moduser(name me, uint64_t score, std::string memo);
 
-    [[eosio::action]]
-    void removeuser(name me);
-
   private:
 
     struct [[eosio::table]] user
