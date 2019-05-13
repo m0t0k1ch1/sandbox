@@ -12,6 +12,10 @@
                     "type": "name"
                 },
                 {
+                    "name": "score",
+                    "type": "uint64"
+                },
+                {
                     "name": "memo",
                     "type": "string"
                 },
@@ -30,8 +34,22 @@
                     "type": "name"
                 },
                 {
+                    "name": "score",
+                    "type": "uint64"
+                },
+                {
                     "name": "memo",
                     "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "removeuser",
+            "base": "",
+            "fields": [
+                {
+                    "name": "me",
+                    "type": "name"
                 }
             ]
         },
@@ -42,6 +60,10 @@
                 {
                     "name": "key",
                     "type": "name"
+                },
+                {
+                    "name": "score",
+                    "type": "uint64"
                 },
                 {
                     "name": "memo",
@@ -59,6 +81,11 @@
         {
             "name": "moduser",
             "type": "moduser",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "removeuser",
+            "type": "removeuser",
             "ricardian_contract": ""
         }
     ],

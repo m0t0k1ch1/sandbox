@@ -4,6 +4,7 @@ using namespace eosio;
 
 void test::adduser(
   name        me,
+  uint64_t    score,
   std::string memo,
   name        ram_payer
 ) {
@@ -13,13 +14,15 @@ void test::adduser(
   check(user_itr == users.end(), "user already exists");
 
   users.emplace(ram_payer, [&](auto& row) {
-    row.key  = me;
-    row.memo = memo;
+    row.key   = me;
+    row.score = score;
+    row.memo  = memo;
   });
 }
 
 void test::moduser(
   name        me,
+  uint64_t    score,
   std::string memo
 ) {
   require_auth(me);
@@ -27,6 +30,17 @@ void test::moduser(
   const auto& user = users.get(me.value, "user is not found");
 
   users.modify(user, same_payer, [&](auto& row) {
-    row.memo = memo;
+    row.score = score;
+    row.memo  = memo;
   });
+}
+
+void test::removeuser(
+  name me
+) {
+  require_auth(me);
+
+  const auto& user = users.get(me.value, "user is not found");
+
+  users.erase(user);
 }
