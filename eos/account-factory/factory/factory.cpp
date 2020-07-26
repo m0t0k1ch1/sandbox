@@ -3,10 +3,10 @@
 using namespace eosio;
 
 void factory::create(
-  const name& account,
+  const name&      account,
   const authority& auth_owner,
   const authority& auth_active,
-  uint32_t ram_bytes
+  uint32_t         ram_bytes
 ) {
   require_auth(get_self());
 

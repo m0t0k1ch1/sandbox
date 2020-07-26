@@ -8,9 +8,9 @@ void account::ping()
 }
 
 void account::ontransfer(
-  const name& from,
-  const name& to,
-  const asset& quantity,
+  const name&   from,
+  const name&   to,
+  const asset&  quantity,
   const string& memo
 ) {
   if (to != get_self()) {
