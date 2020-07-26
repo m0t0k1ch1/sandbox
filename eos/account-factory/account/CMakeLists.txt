@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.10)
+project(account)
+find_package(eosio.cdt)
+include_directories(.)
+add_contract(account account account.cpp)
