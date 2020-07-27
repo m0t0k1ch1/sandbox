@@ -26,11 +26,43 @@
             ]
         },
         {
+            "name": "code",
+            "base": "",
+            "fields": [
+                {
+                    "name": "key",
+                    "type": "name"
+                },
+                {
+                    "name": "value",
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
             "name": "create",
             "base": "",
             "fields": [
                 {
                     "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "ram_bytes",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "init",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "code_key",
                     "type": "name"
                 },
                 {
@@ -40,10 +72,6 @@
                 {
                     "name": "auth_active",
                     "type": "authority"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "uint32"
                 }
             ]
         },
@@ -90,6 +118,20 @@
             ]
         },
         {
+            "name": "setcode",
+            "base": "",
+            "fields": [
+                {
+                    "name": "key",
+                    "type": "name"
+                },
+                {
+                    "name": "value",
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
             "name": "wait_weight",
             "base": "",
             "fields": [
@@ -109,9 +151,27 @@
             "name": "create",
             "type": "create",
             "ricardian_contract": ""
+        },
+        {
+            "name": "init",
+            "type": "init",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setcode",
+            "type": "setcode",
+            "ricardian_contract": ""
         }
     ],
-    "tables": [],
+    "tables": [
+        {
+            "name": "codes",
+            "type": "code",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
     "ricardian_clauses": [],
     "variants": []
 }
