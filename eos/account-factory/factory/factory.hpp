@@ -11,8 +11,6 @@ class [[eosio::contract]] factory : public contract
 
     factory(name receiver, name code, datastream<const char*> ds) : contract(receiver, code, ds), codes(get_self(), get_self().value) {}
 
-    using contract::contract;
-
     [[eosio::action]]
     void create(const name& account, uint32_t ram_bytes);
 
