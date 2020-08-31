@@ -1,0 +1,43 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "serialize",
+            "base": "",
+            "fields": [
+                {
+                    "name": "n",
+                    "type": "name"
+                },
+                {
+                    "name": "a",
+                    "type": "asset"
+                },
+                {
+                    "name": "i",
+                    "type": "uint64"
+                },
+                {
+                    "name": "s",
+                    "type": "string"
+                },
+                {
+                    "name": "b",
+                    "type": "bool"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "serialize",
+            "type": "serialize",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [],
+    "ricardian_clauses": [],
+    "variants": []
+}
