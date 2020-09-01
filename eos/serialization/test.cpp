@@ -32,6 +32,6 @@ class [[eosio::contract]] test : public contract
       ds << n << a << i << s << b;
 
       checksum256 hashed = sha256(buf.data(), buf.size());
-      printhex(&hashed, 32);
+      print(hashed);
     };
 };
