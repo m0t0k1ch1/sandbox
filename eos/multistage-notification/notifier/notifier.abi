@@ -10,6 +10,14 @@
                 {
                     "name": "target",
                     "type": "name"
+                },
+                {
+                    "name": "next_notifier",
+                    "type": "name"
+                },
+                {
+                    "name": "next_target",
+                    "type": "name"
                 }
             ]
         }
